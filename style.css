@@ -38,3 +38,9 @@ h1 {
     font-size: 16px;
     cursor: pointer;
 }
+
+#timer {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+}

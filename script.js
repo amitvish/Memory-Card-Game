@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
     const cardArray = [
-        // 6 pairs of cards
         { name: 'apple', color: 'red' }, { name: 'apple', color: 'red' },
         { name: 'car', color: 'blue' }, { name: 'car', color: 'blue' },
         { name: 'tree', color: 'green' }, { name: 'tree', color: 'green' },
@@ -12,9 +10,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const grid = document.querySelector('.memory-game');
     const restartButton = document.getElementById('restartButton');
+    const timerDisplay = document.getElementById('timer');
     var cardsChosen = [];
     var cardsChosenId = [];
     var cardsWon = [];
+    var gameTimer;
+    var seconds = 0;
+
+    function startTimer() {
+        seconds = 0;
+        timerDisplay.textContent = `Time: ${seconds} seconds`;
+        gameTimer = setInterval(function() {
+            seconds++;
+            timerDisplay.textContent = `Time: ${seconds} seconds`;
+        }, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(gameTimer);
+    }
 
     function createBoard() {
         cardArray.sort(() => 0.5 - Math.random());
@@ -43,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const optionTwoId = cardsChosenId[1];
 
         if (cardsChosen[0] === cardsChosen[1] && optionOneId != optionTwoId) {
-            alert('You found a match');
             cards[optionOneId].style.visibility = 'hidden';
             cards[optionTwoId].style.visibility = 'hidden';
             cardsWon.push(cardsChosen);
@@ -56,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardsChosenId = [];
 
         if (cardsWon.length === cardArray.length/2) {
+            stopTimer();
             restartButton.style.display = 'block';
         }
     }
@@ -67,7 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
         cardsWon = [];
         createBoard();
         restartButton.style.display = 'none';
+        startTimer(); // Restart the timer
     });
 
     createBoard();
+    startTimer(); // Start the timer when the game loads
 });
