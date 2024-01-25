@@ -37,7 +37,17 @@ h1 {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    background-color: #4e6bff; /* Set the initial background color to light blue */
+    color: white; /* Set the text color to white for better visibility */
+    border: none; /* Remove the default button border */
+    border-radius: 5px; /* Add slight rounding to the corners */
+    transition: background-color 0.3s ease; /* Smooth transition for background color change */
 }
+
+#restartButton:hover {
+    background-color: navy; /* Darken the background color on hover */
+}
+
 
 #timer {
     margin: 10px 0;
