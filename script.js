@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardsChosenId.push(cardId);
         this.style.backgroundColor = cardArray[cardId].color;
         if (cardsChosen.length === 2) {
-            setTimeout(checkForMatch, 500);
+            setTimeout(checkForMatch, 250);
         }
     }
 
